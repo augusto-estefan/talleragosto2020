@@ -1,0 +1,5 @@
+---
+- hosts: srvrp01 
+  roles:
+  - paquetes
+  - httpd

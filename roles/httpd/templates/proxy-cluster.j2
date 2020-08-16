@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+<Proxy balancer://{{ mycluster }}>
+    BalancerMember {{ member01 }}
+    BalancerMember {{ member02 }}
+</Proxy>
+
+    ProxyPreserveHost On
+
+    ProxyPass / balancer://{{ mycluster }}/
+    ProxyPassReverse / balancer://{{ mycluster }}/
+</VirtualHost>

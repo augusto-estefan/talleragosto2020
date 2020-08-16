@@ -1,0 +1,7 @@
+---
+- name: reloaded httpd
+  service:
+    name: httpd
+    state: running
+    enabled: yes
+

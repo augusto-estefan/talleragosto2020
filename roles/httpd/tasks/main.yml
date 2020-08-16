@@ -1,0 +1,17 @@
+---
+- name: Archivo configuracion httpd reverse
+  template:
+    src: proxy-cluster.j2
+    dest: /etc/httpd/conf.d/proxy-cluster.conf
+  notify: reinicio httpd
+# tasks file for httpd
+- firewalld:
+    port: 80/tcp
+    permanent: yes
+    state: enable
+    immediate: yes
+- firewalld:
+    port: 443/tcp
+    permanent: yes
+    state: enable
+    immediate: yes
