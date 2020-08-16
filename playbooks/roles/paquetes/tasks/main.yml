@@ -4,4 +4,3 @@
   yum:
     name: httpd
     state: present
-    enable: true

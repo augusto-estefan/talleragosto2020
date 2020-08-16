@@ -2,6 +2,6 @@
 - name: reloaded httpd
   service:
     name: httpd
-    state: running
+    state: restarted
     enabled: yes
 

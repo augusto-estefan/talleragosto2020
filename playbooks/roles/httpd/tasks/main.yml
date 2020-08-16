@@ -3,15 +3,15 @@
   template:
     src: proxy-cluster.j2
     dest: /etc/httpd/conf.d/proxy-cluster.conf
-  notify: reinicio httpd
+  notify: reloaded httpd
 # tasks file for httpd
 - firewalld:
     port: 80/tcp
     permanent: yes
-    state: enable
+    state: enabled
     immediate: yes
 - firewalld:
     port: 443/tcp
     permanent: yes
-    state: enable
+    state: enabled
     immediate: yes
