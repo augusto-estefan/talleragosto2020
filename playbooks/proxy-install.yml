@@ -1,5 +1,5 @@
 ---
-- hosts: srvrp01 
+- hosts: reverseproxy
   roles:
   - paquetes
   - httpd

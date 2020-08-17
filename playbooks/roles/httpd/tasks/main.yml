@@ -4,14 +4,35 @@
     src: proxy-cluster.j2
     dest: /etc/httpd/conf.d/proxy-cluster.conf
   notify: reloaded httpd
+  when: (ansible_facts['distribution'] == "CentOS")
 # tasks file for httpd
 - firewalld:
     port: 80/tcp
     permanent: yes
     state: enabled
     immediate: yes
+  when: (ansible_facts['distribution'] == "CentOS")
 - firewalld:
     port: 443/tcp
     permanent: yes
     state: enabled
     immediate: yes
+  when: (ansible_facts['distribution'] == "CentOS")
+
+- name: Archivo configuracion apache2
+  template:
+    src: proxy-cluster.j2
+    dest: /etc/apache2/sites-available/proxy-cluster.conf
+  notify: reloaded apache2
+  when: (ansible_facts['distribution'] == "Ubuntu")
+
+- ufw:
+    rule: allow
+    port: '80'
+    proto: tcp
+  when: (ansible_facts['distribution'] == "Ubuntu")
+- ufw:
+    rule: allow
+    port: '443'
+    proto: tcp
+  when: (ansible_facts['distribution'] == "Ubuntu")

@@ -1,6 +1,12 @@
 ---
 # tasks file for paquetes
-- name: Instalacion de paquete
+- name: Instalacion de paquete centos
   yum:
     name: httpd
     state: present
+  when: (ansible_facts['distribution'] == "CentOS")
+- name: Instalacion de paquete debian
+  apt:
+    name: apache2
+    state: present
+  when: (ansible_facts['distribution'] == "Ubuntu")
